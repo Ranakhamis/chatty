@@ -7,5 +7,6 @@ class CreateApplications < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :applications, :access_token, unique: true
   end
 end

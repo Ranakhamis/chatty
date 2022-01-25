@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_01_25_120339) do
     t.integer "chat_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["access_token"], name: "index_applications_on_access_token", unique: true
   end
 
 end
