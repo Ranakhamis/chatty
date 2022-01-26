@@ -12,19 +12,9 @@ class ApplicationsController < ApplicationController
     render json: @application
   end
 
-  def update
-    @application = Application.find_by!(access_token: params[:access_token])
-    @application.update(application_params)
-    render json: @application
-  end
-  def show
-    @application = Application.find_by!(access_token: params[:access_token])
-    render json: @application
-  end
-
   private
 
   def application_params
-    params.permit(:name)
+    params.permit(:name, :access_token)
   end
 end
