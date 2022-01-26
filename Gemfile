@@ -9,6 +9,15 @@ gem 'rails', '~> 6.0.0'
 gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+
+gem 'sidekiq', '~> 6.4'
+gem 'sidekiq-scheduler', '~> 3.1', '>= 3.1.1'
+
+gem 'redis', '~> 4.5', '>= 4.5.1'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'rails_redis_cache'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
