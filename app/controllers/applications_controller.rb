@@ -7,8 +7,7 @@ class ApplicationsController < ApplicationController
 
   def create
     @application = Application.new(application_params)
-    @application.chat_count = 0
-    @application.save
+    @application.save!
     render json: @application
   end
 

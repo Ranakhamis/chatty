@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   
   resources :applications, param: :access_token, only: [:index,:create] do
     resources :chats, param: :access_token, only: [:index, :create] do
-
+      resources :messages, param: :chat_id, only: [:index, :create] do
+      end
     end
   end  
 end
