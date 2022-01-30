@@ -1,9 +1,49 @@
 version: "3.9"
+
+volumes:
+   mysql:      
+   redis: 
+
 services:
-  web:
+
+  chatty:
     build: .
+    restart: always
+    #depends_on:
+      #- "db"
+      #- "redis"
+      #- "elasticsearch"
     volumes:
-      - ./chatty
+      - ".:/chatty"
     ports:
       - "3000:3000"
-   
+
+  db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - mysql:/var/lib/mysql 
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis
+    volumes:
+        - "redis:/data" 
+    restart: always
+    environment:
+      REDIS_HOST: redis
+    ports:
+      - "6379:6379"
+
+  elasticsearch:
+    image: elasticsearch:6.8.4
+    restart: always
+    environment:
+      ELASTICSEARCH_HOST: elasticsearch
+      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
+    ports:
+      - "9200:9200"

@@ -12,18 +12,14 @@ class ChatsController < ApplicationController
 
   def create
   	@application = Application.find_by_access_token(params[:application_access_token])
-    
+        
+    #redis = Redis.new('localhost')
+    #chat_count = redis.incr("chat_count")
     @chat =Chat.new(application_id: @application.id, chat_id: 1)
-    
-    #@chat.increment(:chat_count)
-    #@chat = redis.incr(chat_count)
-  	@chat.save!	
-    render json: @chat
-  end
 
-  private
-  def chat_params
-    params.permit(:chat_id, :access_token)
+  	@chat.save!	
+    render json: @chat.to_json(:except => [:chat_id, :application_id])
   end
 
 end
+
