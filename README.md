@@ -2,8 +2,7 @@
 Chatting API application in Ruby on Rails
 
 ## Overview
-The API is composed of two separate services:
-- Chat API (Rails): Main service which provides most of the core management operations (create, update, get) of applications, chats, and messages, also supports searching through messages in chats using `elasticsearch`.
+- Chat API (Rails): Main service which provides most of the core management operations (create, get) of applications, chats, and messages, also supports searching through messages in chats using `elasticsearch`.
 
 ## Starting Services
 sudo docker-compose down && sudo docker-compose build && sudo docker-compose up
