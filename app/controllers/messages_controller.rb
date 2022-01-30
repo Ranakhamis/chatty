@@ -1,4 +1,8 @@
+require 'redis'
+
 class MessagesController < ApplicationController
+
+include Render 
 
  def index
    @application = Application.find_by_access_token(params[:application_access_token])
@@ -12,8 +16,11 @@ class MessagesController < ApplicationController
   	@application = Application.find_by_access_token(params[:application_access_token])
 
   	@chat = Chat.find_by_chat_id(params[:chat_access_token])
+
+    redis = Redis.new( host: "redis")
+    message_id = redis.incr("message_count_chat_#{@chat.id}")
     
-    @message =Message.new(chat_id: @chat.id, message_id: 1, content: 'ducks kteeer')
+    @message =Message.new(chat_id: @chat.id, message_id: message_id , content: 'ducks kteeer')
     
   	@message.save!	
     render json: @message
