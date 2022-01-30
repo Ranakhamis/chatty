@@ -20,11 +20,16 @@ include Render
     redis = Redis.new( host: "redis")
     message_id = redis.incr("message_count_chat_#{@chat.id}")
     
-    @message =Message.new(chat_id: @chat.id, message_id: message_id , content: 'ducks kteeer')
-    
+    @message =Message.new( content: params[:content] , chat_id: @chat.id,  message_id: message_id )  
   	@message.save!	
     render json: @message
   end
+
+  private
+  def message_params
+     params.permit(:content)
+  end
+
 
   def search
     @application = Application.find_by_access_token(params[:application_access_token])
