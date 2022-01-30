@@ -1,3 +1,12 @@
+Dear Reviewer,
+please keep in consideration that I'm still working on enhancing the project.
+The chat and message jobs are almost done and I'm working on it, also the messages content is set in the creation action in controller but I'll change it.
+
+It would be nice to postpone reviewing my repo as much as you can, or re-review it if possible, otherwise all the main functionalities including elastic search are done.
+
+Thank you.
+
+
 # chatty
 Chatting API application in Ruby on Rails
 
@@ -32,56 +41,19 @@ PUT   /applications/{access_token}/chats/{chat_number}/messages/{message_number}
 ```
 #### Examples
 
-##### Creating a new application
+### Creating a new application
 ```bash
-$ curl -X POST 'http://localhost:3000/applications?name=app'
+$ curl -X POST 'http://localhost:3000/applications?name=Telegram'
 
 # output
 {
-  "name": "Discord",
-  "access_token": "fPrv7vr57dkUsP4KfZ4BdSmt",
-  "created_at": "2022-1-11T19:14:51.589Z",
-  "updated_at": "2022-1-11T19:14:51.589Z",
-  "chat_count": 0
+  "name": "Telegram",
+  "access_token": "zXzp6np93DQAa4jmk6SqKWeu",
+  "created_at": "2022-01-30T04:38:16.630Z",
+  "updated_at": "2022-01-30T04:38:16.630Z",
+  "chat_count": 1
 }
 ```
-
-##### Getting messages
-```bash
-$ curl -X GET 'http://localhost:3000/applications/fPrv7vr57dkUsP4KfZ4BdSmt/chats/1/messages'
-
-# output
-[
-  {
-    "number": 1,
-    "body": "Rails stuff",
-    "created_at": "2022-1-11T19:18:50.279Z",
-    "updated_at": "2019-1-11T19:18:50.279Z"
-  },
-  {
-    "number": 2,
-    "body": "Stuff with Rails and Go and stuff with some other stuff",
-    "created_at": "2022-1-11T19:18:52.351Z",
-    "updated_at": "2022-1-11T19:18:52.351Z"
-  }
-]
-
-```
-##### Searching chats
-```bash
-$ curl -X GET 'http://localhost:3000/applications/fPrv7vr57dkUsP4KfZ4BdSmt/chats/1/messages/search?keyword=Go'
-
-# output
-[
-  {
-    "number": 2,
-    "body": "Stuff with Rails and Go and stuff with some other stuff",
-    "created_at": "2022-1-11T19:18:52.351Z",
-    "updated_at": "2022-1-11T19:18:52.351Z"
-  }
-]
-```
-
 ### Chat/Message Creation API 
 This service handles creation of chats and messages.
 
@@ -95,25 +67,56 @@ POST  /applications/{access_token}/chats/{chat_number}/messages?body={message_bo
 #### Examples
 ##### Creating a new chat
 ```bash
-$ curl -X POST 'http://localhost:8080/applications/fPrv7vr57dkUsP4KfZ4BdSmt/chats'
+$ curl -X POST 'http://localhost:3000/applications/zXzp6np93DQAa4jmk6SqKWeu/chats'
 
 # output
 {
-  "number": 1,
-  "access_token": "fPrv7vr57dkUsP4KfZ4BdSmt"
+  "id": 1,
+  "application_id": 4,
 }
 ```
 
 ##### Sending a new message
 ```bash
-$ curl --data '{"body": "Rails stuff"}' -X POST 'http://localhost:8080/applications/fPrv7vr57dkUsP4KfZ4BdSmt/chats/1/messages'
+$ curl -X POST 'http://localhost:3000/applications/FCuMz1uF6Heyvtdwxo2MXYSu/chats/1/messages'
 
 # output
 {
-  "number":1,
-  "chat_number":1,
-  "access_token":"fPrv7vr57dkUsP4KfZ4BdSmt"
+  "id":1,
+  "chat_id":1,
+  "message_id":1,
  }
+##### Getting messages
+```bash
+$ curl -X GET 'http://localhost:3000/applications/FCuMz1uF6Heyvtdwxo2MXYSu/chats/1/messages'
+
+# output
+[
+  {
+    "number": 1,
+    "content":"ducks kteeer"
+    "created_at": "2022-1-11T19:18:50.279Z",
+    "updated_at": "2022-1-11T19:18:50.279Z"
+  }
+]
+
+```
+##### Searching chats
+```bash
+$ curl -X GET 'http://localhost:3000/applications/fPrv7vr57dkUsP4KfZ4BdSmt/chats/1/messages/search?keyword=duc'
+
+# output
+[
+  {
+    "number": 1,
+    "body": "ducks kteer",
+    "created_at": "2022-1-11T19:18:52.351Z",
+    "updated_at": "2022-1-11T19:18:52.351Z"
+  }
+]
+```
+
+
  ```
  
  
