@@ -1,0 +1,8 @@
+:queues:
+  - chat
+  - message
+  - index
+
+:schedule:
+  ElasticSearchIndexingJob:
+    every: '120s'

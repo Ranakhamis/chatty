@@ -1,5 +1,7 @@
 class ApplicationsController < ApplicationController
   
+  include Render 
+  
   def index
     @applications = Application.all
     render json: @applications
