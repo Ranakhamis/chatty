@@ -25,12 +25,6 @@ include Render
     render json: @message
   end
 
-  private
-  def message_params
-     params.permit(:content)
-  end
-
-
   def search
     @application = Application.find_by_access_token(params[:application_access_token])
     @chat = Chat.find_by_chat_id(params[:chat_access_token])
@@ -38,4 +32,9 @@ include Render
 
   end
   
+  private
+  def message_params
+     params.permit(:content)
+  end
+
 end

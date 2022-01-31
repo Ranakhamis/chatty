@@ -18,6 +18,7 @@ gem 'rails_redis_cache'
 
 gem 'sidekiq', '~> 6.4'
 gem 'sidekiq-scheduler', '~> 3.1', '>= 3.1.1'
+gem 'sidekiq-status'
 
 
 gem 'elasticsearch-rails', '~> 7.2'

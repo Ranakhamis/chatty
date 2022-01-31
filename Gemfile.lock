@@ -60,6 +60,8 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
@@ -131,6 +133,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
+    numerizer (0.1.1)
     puma (3.12.6)
     raabro (1.4.0)
     racc (1.6.0)
@@ -203,6 +206,9 @@ GEM
       sidekiq (>= 3)
       thwait
       tilt (>= 1.4.0)
+    sidekiq-status (2.1.2)
+      chronic_duration
+      sidekiq (>= 5.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -244,6 +250,7 @@ DEPENDENCIES
   redis-rails
   sidekiq (~> 6.4)
   sidekiq-scheduler (~> 3.1, >= 3.1.1)
+  sidekiq-status
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

@@ -9,10 +9,10 @@ services:
   chatty:
     build: .
     restart: always
-    #depends_on:
-      #- "db"
-      #- "redis"
-      #- "elasticsearch"
+    depends_on:
+      - "db"
+      - "redis"
+      - "elasticsearch"
     volumes:
       - ".:/chatty"
     ports:
@@ -47,3 +47,17 @@ services:
       ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     ports:
       - "9200:9200"
+
+  sidekiq:
+    build: .
+    depends_on:
+      - "db"
+      - "redis"
+      - "elasticsearch"
+      - "chatty"
+
+    command: bundle exec sidekiq -C config/sidekiq.yml  | tee log/sidekiq.log
+    restart: unless-stopped
+    volumes:
+      - ".:/chatty"
+   

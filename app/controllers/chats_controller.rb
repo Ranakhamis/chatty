@@ -3,26 +3,32 @@ require 'redis'
 
 class ChatsController < ApplicationController
 
-  include Render 
+  before_action :set_application
+  #include Render 
 
   def index
-   @application = Application.find_by_access_token(params[:application_access_token])
+   #@application = Application.find_by_access_token(params[:application_access_token])
    @chats = @application.chats.all
    render json: @chats
   end
 
 
   def create
-  	@application = Application.find_by_access_token(params[:application_access_token])
         
     redis = Redis.new( host: "redis")
     chat_id = redis.incr("chat_count_app_#{@application.id}")
-
-    @chat =Chat.new(application_id: @application.id, chat_id: chat_id)
-
-  	@chat.save!	
-    render json: @chat
+    ChatJob.perform_async(params[:application_access_token], chat_id)
+    render json: {chat_id: chat_id}
   end
+
+  private
+  def chat_params
+    params.permit(:chat_id)
+  end
+
+  def set_application
+      @application = Application.find_by_access_token(params[:application_access_token])
+  end 
 
 end
 
