@@ -1,22 +1,21 @@
 Dear Reviewer,
-please keep in consideration that I'm still working on enhancing the project.
-The chat and message jobs are almost done and I'm working on it, also the messages content is set in the creation action in controller but I'll change it.
-
-It would be nice to postpone reviewing my repo as much as you can, or re-review it if possible, otherwise all the main functionalities including elastic search are done.
+please keep in consideration that I'm still enhancing the project, and as an entry level in backend this is my second rails project and the first working with just APIs ,Jobs, elastic search and Redis, I enjoyed working on it and I hope you find it good.
 
 Thank you.
 
+## Two Important notes:
+- All main requirements are done including elastic search endpoint, except that it was working fine then stopped working bec it couldnt find the index without me changing the logic and I investigated the issue for a whole day but finally I had to submit the task.
 
-# chatty
-Chatting API application in Ruby on Rails
+-Chat job is working successfully (enqued and processed)and the message job works but only enque the requests without being processed, I'm still investigating both issues.
 
-## Overview
-- Chat API (Rails): Main service which provides most of the core management operations (create, get) of applications, chats, and messages, also supports searching through messages in chats using `elasticsearch`.
+-If you want to check the msg creation without the job, Just uncomment lines 23,24,25 and comment 26,27 in message controller.
 
 ## Starting Services
+```bash
 sudo docker-compose down && sudo docker-compose build && sudo docker-compose up
 ```
-Make sure that `docker` and `docker-compose` are installed with `dockerd` running, also make sure that ports `3000` and ports `8080` are available for the services to run on.
+```
+Make sure that `docker` and `docker-compose` are installed with `dockerd` running, also make sure that ports `3000` and ports `9200` are available for the services to run on.
 
 ## Using Services
 
@@ -78,13 +77,11 @@ $ curl -X POST 'http://localhost:3000/applications/zXzp6np93DQAa4jmk6SqKWeu/chat
 
 ##### Sending a new message
 ```bash
-$ curl -X POST 'http://localhost:3000/applications/FCuMz1uF6Heyvtdwxo2MXYSu/chats/1/messages'
+$ curl --data '{"content": "Heeey, I'm your fav duck"}' -X POST 'http://localhost:3000/applications/Bg9S4iusyPTeaPm5xM3hkg3F/chats/1/messages'
 
 # output
-{
-  "id":1,
+{ 
   "chat_id":1,
-  "message_id":1,
  }
 ##### Getting messages
 ```bash

@@ -7,9 +7,9 @@ class ElasticSearchIndexingJob
   
   def perform
     unless Message.__elasticsearch__.index_exists?
-      Message.__elasticsearch__.create_index!
+      Message.__elasticsearch__.create_index! force: true,  ignore: 404
     end
-    Message.import
+      Message.import force: true
   end
 
 end

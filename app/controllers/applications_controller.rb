@@ -4,13 +4,13 @@ class ApplicationsController < ApplicationController
   
   def index
     @applications = Application.all
-    render json: @applications
+    render_json @applications
   end
 
   def create
     @application = Application.new(application_params)
     @application.save!
-    render json: @application
+    render_json @application
   end
 
   private

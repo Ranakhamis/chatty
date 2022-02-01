@@ -1,3 +1,4 @@
+
 module Searchable
   extend ActiveSupport::Concern
 
@@ -27,7 +28,7 @@ module Searchable
               }
           }
       )
-      response.results.map { |r| {content: r._source.content, chat_id: r._source.message_id} }
+      response.results.map { |r| {content: r._source.content, message_id: r._source.message_id}  }
     end
   end
 end

@@ -4,12 +4,11 @@ require 'redis'
 class ChatsController < ApplicationController
 
   before_action :set_application
-  #include Render 
+  include Render 
 
   def index
-   #@application = Application.find_by_access_token(params[:application_access_token])
    @chats = @application.chats.all
-   render json: @chats
+   render_json @chats
   end
 
 
@@ -29,6 +28,5 @@ class ChatsController < ApplicationController
   def set_application
       @application = Application.find_by_access_token(params[:application_access_token])
   end 
-
 end
 
